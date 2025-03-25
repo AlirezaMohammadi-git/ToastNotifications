@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Toast Notification</title>
+</head>
+
+<body>
+
+  <div>
+    <button class="error_btn">Error</button>
+    <button class="invalid_btn">Invalid</button>
+    <button class="success_btn">Success</button>
+  </div>
+
+  <div class="notif_list">
+    <!-- <div class="notif_container">
+      <img class="icon" src="icons/icons8-success.svg" alt="">
+      <h2 class="notif_text">Successfully submited</h2>
+    </div>
+    <div class="notif_container invalid">
+      <img class="icon" src="icons/icons8-attention-48.png" alt="">
+      <h2 class="notif_text">invalid value try again</h2>
+    </div>
+    <div class="notif_container error">
+      <img class="icon" src="icons/icons8-error.svg" alt="">
+      <h2 class="notif_text">Something went wrong!</h2>
+    </div> -->
+  </div>
+
+  <script>
+
+    const errorBtn = document.querySelector('.error_btn')
+    const invalidBtn = document.querySelector('.invalid_btn')
+    const successBtn = document.querySelector('.success_btn')
+    const notifList = document.querySelector('.notif_list')
+
+    successBtn.addEventListener("click", () => { showNotification('success', "Success Notification showcase") })
+    invalidBtn.addEventListener("click", () => { showNotification('invalid', "Invalid notif showcase") })
+    errorBtn.addEventListener("click", () => { showNotification('error', "Opps! Something went wrong!") })
+
+
+
+    function showNotification(notifType, notifText = 'default text') {
+
+      // showing notification base on type
+      switch (notifType) {
+        case 'success': {
+
+          const html =
+            `
+                <img class="icon" src="icons/icons8-success.svg" alt="">
+                <h2 class="notif_text">${notifText}</h2>
+          `;
+
+          const newChild = document.createElement("div")
+          // adding style 
+          newChild.classList.add('notif_container')
+          // adding show notification animation
+          newChild.classList.add('show_notification')
+          // filling div with html
+          newChild.innerHTML = html;
+          // adding completed div to list
+          notifList.appendChild(newChild)
+          setTimeout(() => {
+
+            // showing remove animation
+            newChild.classList.remove('show_notification')
+            newChild.classList.add('hide_notification')
+
+            // remove item completely after 3 sec
+            setTimeout(() => {
+
+              notifList.removeChild(newChild)
+
+            }, 500);
+
+          }, 3000);
+
+          break;
+        }
+        case 'invalid': {
+          const html =
+            `
+              <img class="icon" src="icons/icons8-attention-48.png" alt="">
+              <h2 class="notif_text">${notifText}</h2>
+          `;
+          const newChild = document.createElement("div")
+          newChild.classList.add('notif_container')
+          newChild.classList.add('invalid')
+          newChild.classList.add('show_notification')
+          newChild.innerHTML = html;
+          notifList.appendChild(newChild)
+          setTimeout(() => {
+            // showing remove animation
+            newChild.classList.remove('show_notification')
+            newChild.classList.add('hide_notification')
+
+            setTimeout(() => {
+              notifList.removeChild(newChild)
+            }, 500);
+          }, 3000);
+          break;
+        }
+        case 'error': {
+          const html =
+            `
+                <img class="icon" src="icons/icons8-error.svg" alt="">
+                <h2 class="notif_text">${notifText}</h2>
+            `;
+          const newChild = document.createElement("div")
+          newChild.classList.add('notif_container')
+          newChild.classList.add('error')
+          newChild.classList.add('show_notification')
+          newChild.innerHTML = html;
+          notifList.appendChild(newChild)
+
+          setTimeout(() => {
+
+            // showing remove animation
+            newChild.classList.remove('show_notification')
+            newChild.classList.add('hide_notification')
+
+            setTimeout(() => {
+              notifList.removeChild(newChild)
+            }, 500);
+          }, 3000);
+          break;
+        }
+        default: {
+          console.log("error showing notificaiton")
+          break;
+        }
+      }
+
+    }
+
+  </script>
+
+</body>
+
+</html>

@@ -24,14 +24,15 @@ body {
 /* ---------------------------------------------- Notification */
 
 .notif_list {
+  padding: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: end;
   align-items: center;
   gap: 28px;
-  position: absolute;
+  position: fixed;
   width: fit-content;
-  height: fit-content;
-  /* for big screens */
+  max-height: 25rem;
   bottom: 30px;
   right: 40px;
 }
@@ -39,6 +40,7 @@ body {
 .notif_container {
   padding: 15px 8px;
   width: 36rem;
+  min-height: 8rem;
   background-color: whitesmoke;
   box-shadow: 0px 0px 22px -5px rgba(0, 0, 0, 0.3);
   display: flex;
